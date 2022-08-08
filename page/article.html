@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/admin.js" defer></script>
+    <link rel="shortcut icon" href="../media/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Céer un nouvel article</title>
+</head>
+
+<body>
+    <h1>Nouvel article</h1>
+    <div class="pageAddArticle">
+        <div class="zoneArticle">
+            <div>
+                <div>
+                    <label for="title">Titre de l'article</label>
+                </div>
+                <div>
+                    <input type="text" name="title" id="title">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="body">Corp de l'article</label>
+                </div>
+                <div>
+                    <textarea name="body" id="body" cols="100" rows="40"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="zoneOptions">
+            <div id="categoriesList">
+                <label for="category">Sélectionnez la catégorie</label>
+                <select name="category" id="category"></select>
+            </div>
+            <div id="tagsList">
+                <div>
+                    <label for="tags">sélectionnez un ou plusieur tags</label>
+                </div>
+                <div id="tagsCheckboxList"></div>
+            </div>
+            <div>
+                <label for="writer">Sélectionnez</label>
+                <select name="writer" id="writer"></select>
+            </div>
+            <div>
+                <div>
+                    <label for="publishedAt">Date de publication</label>
+                </div>
+                <div>
+                    <input type="date" name="publishedAt" id="publishedAt">
+                </div>
+            </div>
+            <div>
+                <button id="createArticle">Créer</button>
+            </div>
+            <div id="info"></div>
+        </div>
+    </div>
+</body>
+
+</html>
