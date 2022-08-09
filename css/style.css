@@ -1,0 +1,98 @@
+/*Html*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+  background-color: #e5c552;
+  color: #020202; /*Couleur Noir */
+}
+
+/*Header*/
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+.fig1 img {
+  padding-top: 5px;
+  right: 0px;
+  border-radius: 50%;
+  max-width: 70%;
+}
+
+/*Body*/
+body {
+  box-sizing: content-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.nuage {
+  line-height: 200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.nuage1 {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+}
+.nuage2 {
+  grid-area: 1 / 2 / 2 / 3;
+  text-align: center;
+}
+
+/*Footer*/
+footer {
+  box-sizing: content-box;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+hr{
+    color: #020202;
+    width: 90%;
+}
+
+
+/*Articles*/
+#page {
+    display: grid;
+    grid-template-columns: 0.25fr 1.75fr;
+}
+nav{
+    background-color:gray;
+    grid-area: 1 / 1 / 2 / 2;
+}
+.title{
+    background-color: #020202;
+    color:  #e5c552;
+    padding: 15px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link{
+    min-height: 681px;
+    display: flex;
+    flex-direction: column;
+    line-height: 150px;
+    text-align: center;
+}
+
+.articlehall{
+    display: flex;
+    justify-content: center;
+    grid-area: 1 / 2 / 2 / 3;
+    justify-items: center;
+}
+
+p{
+    margin: 20px;
+    width: 200px;
+}
+
+/*Admin*/
