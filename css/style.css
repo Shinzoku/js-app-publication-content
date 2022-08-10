@@ -1,3 +1,5 @@
+/*Public*/
+
 /*Html*/
 *{
     margin: 0;
@@ -26,8 +28,16 @@ body {
   box-sizing: content-box;
 }
 
-h1 {
+.center1{
   text-align: center;
+  text-decoration: underline;
+  
+}
+
+.center2{
+  text-align: center;
+  text-decoration: underline;
+  font-size: 4em;
 }
 
 .nuage {
@@ -62,10 +72,7 @@ hr{
     display: grid;
     grid-template-columns: 0.25fr 1.75fr;
 }
-nav{
-    background-color:gray;
-    grid-area: 1 / 1 / 2 / 2;
-}
+
 .title{
     background-color: #020202;
     color:  #e5c552;
@@ -83,6 +90,15 @@ nav{
     text-align: center;
 }
 
+.link2{
+  min-height: 581px;
+  display: flex;
+  flex-direction: column;
+  line-height: 10px;
+  text-align: center;
+  padding: 0px;
+}
+
 .articlehall{
     display: flex;
     justify-content: center;
@@ -96,3 +112,38 @@ p{
 }
 
 /*Admin*/
+/* Menu burger*/
+ul {
+  width: 200px;
+  list-style: none;
+  padding: 0px;
+}
+
+.art, 
+.au, 
+.cat, 
+.ta {
+  text-decoration: none;
+  color: #e5c552;
+}
+
+
+ul>li>ul {
+  opacity: 0;
+  background-color: #020202;
+  line-height: 120px;
+}
+
+ul li:hover>ul {
+    opacity: 1;
+    background-color: #020202;
+    color:  #e5c552;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Tableau*/
+
+.tableau{
+  
+}
