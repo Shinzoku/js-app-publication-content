@@ -6,46 +6,13 @@ var articlesAPIURL = APIURL + "/articles";
 var articlesDatas = document.querySelector('#articlesDatas');
 var articleTitleInput = document.querySelector('#title');
 var articleBodyTextarea = document.querySelector('#body');
-var articleCategory = document.querySelector('category');
-var articleWriter = document.querySelector('writer');
-var infoZoneDiv = document.querySelector('info');
+var articleCategory = document.querySelector('#category');
+var articleWriter = document.querySelector('#writer');
+var articlePublishedAt = document.querySelector('#publishedAt')
+var infoZoneDiv = document.querySelector('#info');
+var createButton = document.querySelector('#create');
 
-// // Visible button on page startup
-// var createButton = document.createElement("button");
-// createButton.innerText = "Créer"
-// mainSection.appendChild(createButton);
-// // Hidden buttons on page startup
-// var updateButton = document.createElement("button");
-// updateButton.innerText = "Mettre à jour";
-// var deleteButton = document.createElement("button");
-// deleteButton.innerText = "Supprimer";
-
-// // function when a article is selected. Not related to the API
-// var selectArticle = function() {
-//     // rename H1
-//     pageTitleH1.innerText = "Modification d’une catégorie";
-//     // first of all, we fill the input field with the name of the category
-//     categoryNameInput.value = document.querySelector("#option-" + categorySelect.value).innerHTML;
-//     // update and delete button are shown
-//     mainSection.appendChild(updateButton)
-//     mainSection.appendChild(deleteButton);
-//     // create button is removed
-//     mainSection.removeChild(createButton)
-// }
-
-// // function to reset form
-// var resetForm = function() {
-//     // Empty the input field
-//     categoryNameInput.value = "";
-//     // remove update and delete button
-//     mainSection.removeChild(updateButton);
-//     mainSection.removeChild(deleteButton);
-//     // add create button
-//     mainSection.appendChild(createButton);
-//     // reset title
-//     pageTitleH1.innerText = "Création d’un article";
-// }
-
+// POST
 // function to create a new element
 var createArticle = function() {
     // if no name is provided, we do nothing
@@ -68,7 +35,7 @@ var createArticle = function() {
         })
         .then((response) => {
             if (response.status == 201) {
-                window.location.href = "http://http://127.0.0.1:5500/page/articles";
+                window.location.href = "http://http://127.0.0.1:5500/page/articles.html";
                 infoZoneDiv.textContent = "Création de l'article réussi";
                 readCategories();
             } else {
@@ -77,9 +44,9 @@ var createArticle = function() {
         })
 }
 
-
+// GET
 // function to get all articles
-var readArticles = function() {
+var readArticle = function() {
     // first we empty the table
     if (articlesDatas) {
         while (articlesDatas.firstChild) {
@@ -89,31 +56,42 @@ var readArticles = function() {
         fetch(articlesAPIURL, { method: "GET" })
             .then(function(response) { return response.json() })
             .then((responseJSON) => {
-                responseJSON["hydra:member"].forEach(article => {
-                    if (article.publishedAt != undefined) {
+                if (responseJSON["hydra:member"]) {
+                    responseJSON["hydra:member"].forEach(article => {
                         let articleTr = document.createElement("tr");
                         let articleTdId = document.createElement("td");
                         articleTdId.innerHTML = article.id;
                         let articleTdTitle = document.createElement("td");
-                        articleTdTitle.innerHTML = `<a href="#">${article.title}</a>`;
+                        articleTdTitle.innerHTML = article.title;
                         let articleTdPublishedAt = document.createElement("td");
-                        articleTdPublishedAt.innerHTML = formatDate(article.publishedAt);
+                        if (article.publishedAt != undefined) {
+                            articleTdPublishedAt.innerHTML = formatDate(article.publishedAt);
+                        } else {
+                            articleTdPublishedAt.innerHTML = "Non publié";
+                        }
                         let articleTdActions = document.createElement("td");
-                        let articleTdBtnShow = document.createElement("button");
-                        articleTdBtnShow.id = "show";
-                        articleTdBtnShow.innerHTML = 'Voir';
-                        let articleTdBtnDelete = document.createElement("button");
-                        articleTdBtnDelete.id = "delete";
-                        articleTdBtnDelete.innerHTML = 'Supprimer';
+                        let linkEdit = document.createElement("a");
+                        linkEdit.href = "http://127.0.0.1:5500/page/edit-article.html?edit=" + article.id;
+                        linkEdit.setAttribute("class", "show");
+                        linkEdit.innerHTML = "Voir/Modifier";
+                        let linkDelete = document.createElement("a");
+                        linkDelete.href = "http://127.0.0.1:5500/page/articles.html?delete=" + article.id;
+                        linkDelete.setAttribute("class", "delete");
+                        linkDelete.innerHTML = 'Supprimer';
+                        linkDelete.addEventListener("click", deleteArticle);
                         articlesDatas.appendChild(articleTr);
-                        articleTr.appendChild(articleTdId);
-                        articleTr.appendChild(articleTdTitle);
-                        articleTr.appendChild(articleTdPublishedAt);
-                        articleTr.appendChild(articleTdActions);
-                        articleTdActions.appendChild(articleTdBtnShow);
-                        articleTdActions.appendChild(articleTdBtnDelete);
-                    }
-                });
+                        articleTr.append(articleTdId, articleTdTitle, articleTdPublishedAt, articleTdActions);
+                        articleTdActions.append(linkEdit, linkDelete);
+                    })
+                } else {
+                    let articleTr = document.createElement("tr");
+                    let articleTd = document.createElement("td");
+                    articleTd.id = "noResult";
+                    articleTd.colSpan = 4;
+                    articleTd.innerHTML = "Aucun résultat";
+                    articlesDatas.appendChild(articleTr);
+                    articleTr.appendChild(articleTd);
+                }
             })
     }
 }
@@ -142,57 +120,77 @@ function formatDate(date) {
     return 'publié le ' + [day, month, year].join('-') + ' à ' + [hours, minutes, seconds].join(':');
 }
 
-// var updateCategory = function() {
-//     // if no name is provided, we do nothing
-//     if (categoryNameInput.value == "") {
-//         return;
-//     }
-//     // we prepare the parameters
-//     var requestParameters = {
-//         "name": categoryNameInput.value
-//     }
-//     fetch(categoriesAPIURL + "/" + categorySelect.value, {
-//             method: "PUT",
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(requestParameters)
-//         })
-//         .then((response) => {
-//             if (response.status == 200) {
-//                 infoZoneDiv.textContent = "Modification de la catégorie effectuée";
-//                 readCategories();
-//             } else {
-//                 infoZoneDiv.textContent = "⚠ Une erreur est survenue lors de la modification de la catégorie";
-//             }
-//         })
-//     resetForm();
-// }
+// GET UNIQUE
+var showEditArticle = function() {
+    var url = new URL(window.location.href);
+    var id = url.searchParams.get("edit");
 
-// var deleteCategory = function() {
-//     // it’s quite straigh forward
-//     fetch(categoriesAPIURL + "/" + categorySelect.value, {
-//             method: "DELETE",
-//         }).then((response) => {
-//             if (response.status == 204) {
-//                 infoZoneDiv.textContent = "Catégorie supprimée";
-//             } else {
-//                 infoZoneDiv.textContent = "⚠ Une erreur est survenue lors de la création de la catégorie";
-//             }
-//             // we reload categories
-//             readCategories();
-//         })
-//         // we reset buttons and input form’s content
-//     resetForm();
-// }
+    // then we fetch data
+    fetch(articlesAPIURL + "/" + id, { method: "GET" })
+        .then(function(response) { return response.json() })
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            articleTitleInput.value = responseJSON.title;
+            articleBodyTextarea.value = responseJSON.body;
+            articlePublishedAt.value = responseJSON.publishedAt;
+        })
+        .catch(function(error) {
+            console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+        });
+}
 
-// // Action for create button
-// createButton.addEventListener("click", createCategory);
-// // Action for update button
-// updateButton.addEventListener("click", updateCategory);
-// // Action for delete button
-// deleteButton.addEventListener("click", deleteCategory);
-// // When we select a category, some things happen 
-// categorySelect.addEventListener("change", selectCategory);
-// When document DOM is loaded, we fetch the categories
-document.addEventListener("DOMContentLoaded", readArticles);
+// PUT
+var updateArticle = function() {
+    // if no name is provided, we do nothing
+    if (articleTitleInput.value == "" || articleBodyTextarea.value == "") {
+        return;
+    }
+    // we prepare the parameters
+    var requestParameters = {
+        "name": categoryNameInput.value
+    }
+    fetch(articlesAPIURL + "/" + id, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestParameters)
+        })
+        .then((response) => {
+            if (response.status == 200) {
+                infoZoneDiv.textContent = "Modification de l'article' effectuée";
+                readCategories();
+            } else {
+                infoZoneDiv.textContent = "⚠ Une erreur est survenue lors de la modification de l'article'";
+            }
+        })
+}
+
+// DELETE
+var deleteArticle = function(e) {
+    var url = new URL(e.target.href);
+    var id = url.searchParams.get("delete");
+    e.preventDefault()
+    fetch(articlesAPIURL + "/" + id, {
+        method: "DELETE",
+    }).then((response) => {
+        if (response.status == 204) {
+            infoZoneDiv.innerHTML = `<span style="font-size: 3rem; position: absolute; top: 40%; left: 50%; background-color: white; color: red; padding: 20px; border-radius: 10px;">Article supprimée</span>`;
+            window.setTimeout(function() { location.reload() }, 1000)
+        } else {
+            infoZoneDiv.innerHTML = "⚠ Une erreur est survenue lors de la suppression de l'article";
+        }
+    })
+
+}
+
+if (createButton) {
+    // Action for create article
+    createButton.addEventListener("click", createArticle);
+}
+
+// When document DOM is loaded, we fetch the articles
+document.addEventListener("DOMContentLoaded", readArticle);
+
+// When document DOM is loaded, we fetch the article
+document.addEventListener("DOMContentLoaded", showEditArticle);

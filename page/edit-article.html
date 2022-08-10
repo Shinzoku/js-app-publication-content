@@ -8,11 +8,11 @@
     <script src="../js/admin.js" defer></script>
     <link rel="shortcut icon" href="../media/favicon/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>Céer un nouvel article</title>
+    <title>Voir / modifier un article</title>
 </head>
 
 <body>
-    <h1>Nouvel article</h1>
+    <h1>Voir / Éditer l'article</h1>
     <div class="pageAddArticle">
         <div class="zoneArticle">
             <div>
@@ -52,11 +52,12 @@
                     <label for="publishedAt">Date de publication</label>
                 </div>
                 <div>
-                    <input type="date" name="publishedAt" id="publishedAt">
+                    <input type="datetime-local" name="publishedAt" id="publishedAt">
                 </div>
             </div>
             <div>
-                <button id="createArticle">Créer</button>
+                <button id="update">Modifier</button>
+                <a href="http://127.0.0.1:5500/page/articles.html"><button>Return à la liste d'articles &RightArrow;</button></a>
             </div>
             <div id="info"></div>
         </div>

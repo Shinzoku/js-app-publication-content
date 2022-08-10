@@ -35,8 +35,9 @@ tr td a {
     color: black;
 }
 
-#show,
-#delete {
+.show,
+.delete,
+#createBtn {
     border-radius: 6px;
     padding: 6px 10px;
     background-color: rgba(255, 255, 255, 0);
@@ -44,22 +45,46 @@ tr td a {
     font-size: 1rem;
 }
 
-#show {
+.show {
     border: 1px solid dodgerblue;
 }
 
-#delete {
+.delete {
     border: 1px solid red;
 }
 
-#show:hover {
+#createBtn {
+    border: 1px solid rgb(108, 180, 0);
+}
+
+.show:hover {
     background-color: dodgerblue;
     color: white;
 }
 
-#delete:hover {
+.delete:hover {
     background-color: red;
     color: white;
+}
+
+#createBtn:hover {
+    background-color: rgb(108, 180, 0);
+    color: white;
+}
+
+#divCreateBtn {
+    display: flex;
+    justify-content: right;
+}
+
+#divCreateBtn a {
+    margin: 2%;
+    margin-right: 18%;
+    text-decoration: none;
+}
+
+#noResult {
+    text-align: center;
 }
 
 
