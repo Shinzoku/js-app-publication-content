@@ -1,11 +1,12 @@
 // Configuration variables
 var APIURL = "https://127.0.0.1:8000/api";
-var articlesAPIURL = APIURL + "/articles?ob=published_at&od=desc";
+var articlesAPIURL = APIURL + "/articles?pages=";
 // "/articles?per_page=20";
 // future DOM interactions
 var articlesDatas = document.querySelector('#articlesDatas');
+let articlesPage = 20;
 // function to get all articles
-var readArticles = function() {
+var readArticles = function () {
     // first we empty the table
     while (articlesDatas.firstChild) {
         articlesDatas.removeChild(articlesDatas.firstChild);
@@ -14,8 +15,10 @@ var readArticles = function() {
     fetch(articlesAPIURL, { method: "GET" })
         .then(function(response) { return response.json() })
         .then((responseJSON) => {
-            responseJSON["hydra:member"].forEach(article => {
-                if (article.publishedAt != undefined) {
+            responseJSON["hydra:member"].forEach((article) => {
+                
+                if (article.publishedAt !== undefined && article["id"] <= articlesPage) {
+
                     let articleTr = document.createElement("tr");
                     let articleTdIcon = document.createElement("td");
                     let articleTdTitle = document.createElement("td");
@@ -27,15 +30,52 @@ var readArticles = function() {
                     articleTr.appendChild(articleTdTitle);
                     articleTr.appendChild(articleTdPublishedAt);
                     articleTdIcon.innerHTML = `<img src="CSS/iconDot2.jpg">`;
-                }
-            });
-        })
-}
+                    
 
+                };
+            });
+        });
+}
+            
 readArticles();
 
 document.addEventListener("readystatechange", readArticles);
 
+// WORD CLOUD
+// WORD CLOUD
+// WORD CLOUD
+
+var cloud = document.querySelector("#cloud");
+
+// RECUPERATION DES CATEGORIES
+var displayCat = function () {
+    fetch("https://127.0.0.1:8000/api/categories", { method: "GET" })
+        .then(function(response) { return response.json() })
+        .then((responseJSON) => {
+            responseJSON["hydra:member"].forEach((category) => {
+                var listeCat = document.createElement('div');
+                listeCat.innerHTML = category.name;
+                console.log(listeCat);
+            })
+        })
+}
+displayCat();
+
+//RECUPERATION DU NOMBRE D'ARTICLE PAR CATEGORIE
+// var numberCat = function () =>
+
+//PAGINATION PAR 20
+//PAGINATION PAR 20
+//PAGINATION PAR 20
+// var page = document.querySelector("#articlesDatas")
+// forEach { 
+
+
+// boucle for avec un range
+
+// if(publishedAt !== null) & !== undifined
+
+// Piste: catégorie.id  pour mesurer la fréquence.
 
 // CREATE FUNCTION
 
