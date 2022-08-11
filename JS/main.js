@@ -46,23 +46,43 @@ document.addEventListener("readystatechange", readArticles);
 // WORD CLOUD
 
 var cloud = document.querySelector("#cloud");
+var selectCat = document.querySelector("#selectCat");
+var tableauCat = document.querySelector("#tableauCat");
+var listeCat = document.querySelector("#listeCat")
+
 
 // RECUPERATION DES CATEGORIES
 var displayCat = function () {
-    fetch("https://127.0.0.1:8000/api/categories", { method: "GET" })
+    fetch("https://127.0.0.1:8000/api/categories/", { method: "GET" })
         .then(function(response) { return response.json() })
         .then((responseJSON) => {
             responseJSON["hydra:member"].forEach((category) => {
-                var listeCat = document.createElement('div');
+                var divCat = document.createElement('div');
+                // var dropDownCat = document.createElement('');
+                var trCat = document.createElement('tr');
+                var tdCat = document.createElement('td');
+                var liCat = document.createElement('li');
+                tdCat.innerHTML = `<a href="#">${category.name}</a>`;
+                selectCat.innerHTML = category.name;
+                tableauCat.innerHTML = category.name;
                 listeCat.innerHTML = category.name;
+                divCat.innerHTML = category.name;
+                selectCat.append(tdCat);
+                cloud.append(listeCat)
                 console.log(listeCat);
             })
         })
 }
 displayCat();
 
+document.addEventListener("readystatechange", displayCat);
+
 //RECUPERATION DU NOMBRE D'ARTICLE PAR CATEGORIE
 // var numberCat = function () =>
+// Piste: catégorie.articles.id  pour mesurer la fréquence.
+
+
+
 
 //PAGINATION PAR 20
 //PAGINATION PAR 20
@@ -75,26 +95,34 @@ displayCat();
 
 // if(publishedAt !== null) & !== undifined
 
-// Piste: catégorie.id  pour mesurer la fréquence.
+
+
+// REQUETE POUR LE MENU CATEGORY
+
+
+
+// REQUETE POUR LE MENU TAG
+
 
 // CREATE FUNCTION
 
 // CATEGORY
 
 var createCategoryButton    = document.querySelector("#createCategoryButton");
-var categoryName    = document.querySelector("#categoryName");
+var newCategoryName    = document.querySelector("#newCategoryName");
 
 var createCategory = function(event) {
     var requestBody = {
-        "name": categoryName.value
+        "name": newCategoryName.value
     };
-    fetch("https://127.0.0.1:8000/api/categories", {
+    fetch("https://127.0.0.1:8000/api/categories/{}", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)
-    }).then(function (response) {
+    })
+    .then(function (response) {
         return response.json()
     })
     .then(function (responseJSON) {
@@ -106,8 +134,9 @@ var createCategory = function(event) {
         else {
             console.log(responseJSON)
             resultDiv.innerHTML = "Catégorie créée";
+            document.body.appendChild(resultDiv);
         }
-        document.body.appendChild(resultDiv);
+        
     })
 }
 
@@ -116,13 +145,13 @@ createCategoryButton.addEventListener("click",createCategory);
 // TAG
 
 var createTagButton    = document.querySelector("#createTagButton");
-var tagName    = document.querySelector("#tagName");
+var createTagName    = document.querySelector("#createTagName");
 
 var createTag = function(event) {
     var requestBody = {
-        "name": tagName.value
+        "name": createTagName.value
     };
-    fetch("https://127.0.0.1:8000/api/tags", {
+    fetch("https://127.0.0.1:8000/api/tags/{}", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -152,13 +181,13 @@ createTagButton.addEventListener("click",createTag);
 // TAG
 
 var deleteTagButton    = document.querySelector("#deleteTagButton");
-var tagId   = document.querySelector("#tagId");
+var deleteTagName   = document.querySelector("#deleteTagName");
 
-var deleteArticle = function(event) {
+var deleteTag = function(event) {
     var requestBody = {
-        "id": tagId.value
+        "name": deleteTagName.value
     };
-    fetch("https://127.0.0.1:8000/api/tags", {
+    fetch("https://127.0.0.1:8000/api/tags/{}", {
         method: "DELETE",
         body: JSON.stringify(requestBody)
     }).then(function (response) {
@@ -186,14 +215,14 @@ deleteTagButton.addEventListener("click",deleteTag);
 
 // CATEGORY
 
-var patchCategoryButton    = document.querySelector("#patchCategoryButton");
-var categoryName    = document.querySelector("#categoryUpdate");
+var updateCategoryButton    = document.querySelector("#updateCategoryButton");
+var updateCategoryName    = document.querySelector("#updateCategoryName");
 
 var patchCategory = function(event) {
     var requestBody = {
-        "name": categoryName.value
+        "name": updateCategoryName.value
     };
-    fetch("https://127.0.0.1:8000/api/categories", {
+    fetch("https://127.0.0.1:8000/api/categories/{}", {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -216,19 +245,19 @@ var patchCategory = function(event) {
     })
 }
 
-patchCategoryButton.addEventListener("click",patchCategory);
+updateCategoryButton.addEventListener("click",patchCategory);
 
 
 // TAG
 
-var patchTagButton    = document.querySelector("#patchTagButton");
-var tagName    = document.querySelector("#tagUpdate");
+var updateTagButton    = document.querySelector("#updateTagButton");
+var updateTagName    = document.querySelector("#updateTagName");
 
 var patchTag = function(event) {
     var requestBody = {
-        "name": tagName.value
+        "name": updateTagName.value
     };
-    fetch("https://127.0.0.1:8000/api/tags", {
+    fetch("https://127.0.0.1:8000/api/tags/{}", {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -251,4 +280,4 @@ var patchTag = function(event) {
     })
 }
 
-patchTagButton.addEventListener("click",patchTag);
+updateTagButton.addEventListener("click",patchTag);
