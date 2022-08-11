@@ -25,7 +25,8 @@ var createArticle = function() {
             "body": articleBodyTextarea.value,
             "category": articleCategory.value,
             "tags": [],
-            "writer": articleWriter.value
+            "writer": articleWriter.value,
+            "publishedAt": articlePublishedAt.value
         }
         // we do the request
     fetch(categoriesAPIURL, {
@@ -64,6 +65,7 @@ var readArticle = function() {
                         let articleTdTitle = document.createElement("td");
                         articleTdTitle.innerHTML = article.title;
                         let articleTdPublishedAt = document.createElement("td");
+                        // allow articles publishedAt without date for display the information "Non publié"
                         if (article.publishedAt != undefined) {
                             articleTdPublishedAt.innerHTML = formatDate(article.publishedAt);
                         } else {
@@ -120,7 +122,7 @@ function formatDate(date) {
     return 'publié le ' + [day, month, year].join('-') + ' à ' + [hours, minutes, seconds].join(':');
 }
 
-// GET UNIQUE
+// GET only one element
 var showEditArticle = function() {
     var url = new URL(window.location.href);
     var id = url.searchParams.get("edit");
@@ -129,14 +131,10 @@ var showEditArticle = function() {
     fetch(articlesAPIURL + "/" + id, { method: "GET" })
         .then(function(response) { return response.json() })
         .then((responseJSON) => {
-            console.log(responseJSON);
             articleTitleInput.value = responseJSON.title;
             articleBodyTextarea.value = responseJSON.body;
             articlePublishedAt.value = responseJSON.publishedAt;
         })
-        .catch(function(error) {
-            console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
-        });
 }
 
 // PUT
@@ -147,7 +145,12 @@ var updateArticle = function() {
     }
     // we prepare the parameters
     var requestParameters = {
-        "name": categoryNameInput.value
+        "title": articleTitleInput.value,
+        "body": articleBodyTextarea.value,
+        "category": articleCategory.value,
+        "tags": [],
+        "writer": articleWriter.value,
+        "publishedAt": articlePublishedAt.value
     }
     fetch(articlesAPIURL + "/" + id, {
             method: "PUT",
@@ -159,7 +162,6 @@ var updateArticle = function() {
         .then((response) => {
             if (response.status == 200) {
                 infoZoneDiv.textContent = "Modification de l'article' effectuée";
-                readCategories();
             } else {
                 infoZoneDiv.textContent = "⚠ Une erreur est survenue lors de la modification de l'article'";
             }
@@ -168,20 +170,21 @@ var updateArticle = function() {
 
 // DELETE
 var deleteArticle = function(e) {
+    // retrieve the url from target
     var url = new URL(e.target.href);
+    // retrieve the parameter "delete" into url
     var id = url.searchParams.get("delete");
     e.preventDefault()
-    fetch(articlesAPIURL + "/" + id, {
-        method: "DELETE",
-    }).then((response) => {
-        if (response.status == 204) {
-            infoZoneDiv.innerHTML = `<span style="font-size: 3rem; position: absolute; top: 40%; left: 50%; background-color: white; color: red; padding: 20px; border-radius: 10px;">Article supprimée</span>`;
-            window.setTimeout(function() { location.reload() }, 1000)
-        } else {
-            infoZoneDiv.innerHTML = "⚠ Une erreur est survenue lors de la suppression de l'article";
-        }
-    })
 
+    fetch(articlesAPIURL + "/" + id, { method: "DELETE" })
+        .then((response) => {
+            if (response.status == 204) {
+                infoZoneDiv.innerHTML = `<span style="font-size: 3rem; position: absolute; top: 40%; left: 50%; background-color: white; color: red; padding: 20px; border-radius: 10px;">Article supprimée</span>`;
+                window.setTimeout(function() { location.reload() }, 1000)
+            } else {
+                infoZoneDiv.innerHTML = "⚠ Une erreur est survenue lors de la suppression de l'article";
+            }
+        })
 }
 
 if (createButton) {
