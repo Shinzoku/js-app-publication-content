@@ -64,10 +64,12 @@ var displayCat = function () {
                 var liCat = document.createElement('li');
                 tdCat.innerHTML = `<a href="#">${category.name}</a>`;
                 selectCat.innerHTML = category.name;
-                tableauCat.innerHTML = category.name;
                 listeCat.innerHTML = category.name;
                 divCat.innerHTML = category.name;
-                selectCat.append(tdCat);
+                trCat.append(tdCat);
+                tableauCat.append(trCat);
+                // selectCat.append();
+
                 cloud.append(listeCat)
                 console.log(listeCat);
             })
