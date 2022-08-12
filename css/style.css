@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: goldenrod;
+}
+
+#articles {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: black;
+    color: goldenrod;
+}
+
+tbody tr:hover {
+    background-color: darkkhaki;
+}
+
+tr td {
+    border-bottom: 1px solid darkkhaki;
+}
+
+tr td {
+    padding: 20px;
+}
+
+tr td a {
+    text-decoration: none;
+    color: black;
+}
