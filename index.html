@@ -8,10 +8,110 @@
     <script src="js/admin.js" defer></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" defer></script>
+    <script src="js/cloud.js" defer></script>
+    <script src="js/catTag.js" defer></script>
     <title>Accueil</title>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
 </head>
 
 <body>
+    <table>
+        <thead>
+            <tr>
+                <td>/</td>
+                <td>Titre</td>
+                <td>Date de publication</td>
+            </tr>
+        </thead>
+        <tbody id="articlesDatas">
+
+        </tbody>
+    </table>
+
+    <div id="cloud">
+        <div id="cloudDisplay">
+
+        </div>
+
+    </div>
+
+    <div id="cloudTag">
+        <div id="cloudTagDisplay">
+
+        </div>
+
+    </div>
+
+    <!-- MENU DEROULANT DES CATEGORIES -->
+    <!-- <select name="" id="selectCat">Choisir une catégorie</select> -->
+
+    <!-- MENU DEROULANT DES TAGS -->
+    <!-- <select name="" id="selectTag">Choisir un tag</select> -->
+
+    <!-- TABLEAU DES CATEGORIES -->
+    <table>
+        <tbody id="tableauCat">
+
+        </tbody>
+    </table>
+
+    <!-- // TABLEAU DES TAGS -->
+
+    <table>
+        <thead></thead>
+        <tbody id="tableauTag">
+
+        </tbody>
+    </table>
+
+
+    <!-- LISTE DE CATEGORIES
+        <div id="listeCat"></div> -->
+
+    <!-- CREATION D'UNE CATEGORIE -->
+    <div id="createCat">
+        <h2>Créer une catégorie</h2>
+        <input type="text" placeholder="nom de la nouvelle catégorie" id="newCategoryName">
+        <button id="createCategoryButton">Créer une catégorie</button>
+    </div>
+
+    <!-- METTRE A JOUR UNE CATEGORIE -->
+
+    <div id="changeCat">
+        <h2>Mettre à jour une catégorie</h2>
+        <input type="text" placeholder="nom de la catégorie à modifier" id="updateCategoryName">
+        <button id="updateCategoryButton">Mettre à jour</button>
+    </div>
+
+
+    <!-- MENU DEROULANT DES TAGS -->
+    <!-- <select name="" id="selectTag">Choisir un tag</select>
+    <div id="tableauTag"></div>
+    <div id="listeTag"></div> -->
+
+    <!-- CREATION D'UN TAG -->
+    <div id="createTag">
+        <h2>Créer un tag</h2>
+        <input type="text" placeholder="nom du tag à créer" id="createTagName">
+        <button id="createTagButton">Créer un tag</button>
+    </div>
+
+    <!-- METTRE A JOUR UN TAG -->
+    <div id="changeTag">
+        <h2>Mettre à jour un tag</h2>
+        <input type="text" id="updateTagName">
+        <button id="updateTagButton">Mettre à jour</button>
+    </div>
+
+    <!-- SUPPRIMER UN TAG -->
+
+    <div id="supTag">
+        <h2>Supprimer un tag</h2>
+        <input type="text" id="deleteTagName">
+        <button id="deleteTagButton">Supprimer</button>
+    </div>
 </body>
 
 </html>
