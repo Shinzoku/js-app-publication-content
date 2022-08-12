@@ -1,29 +1,29 @@
 // REQUETE POUR LES MENUS CATEGORY
 
-var cloud = document.querySelector("#cloud");
-var selectCat = document.querySelector("#selectCat");
+// var cloud = document.querySelector("#cloudDisplay");
+// var selectCat = document.querySelector("#selectCat");
 var tableauCat = document.querySelector("#tableauCat");
-var listeCat = document.querySelector("#listeCat")
+// var listeCat = document.querySelector("#listeCat")
 
 var displayCat = function () {
     fetch("https://127.0.0.1:8000/api/categories/", { method: "GET" })
         .then(function(response) { return response.json() })
         .then((responseJSON) => {
             responseJSON["hydra:member"].forEach((category) => {
-                var divCat = document.createElement('div');
+                // var divCat = document.createElement('div');
                 var trCat = document.createElement('tr');
                 var tdCat = document.createElement('td');
-                var liCat = document.createElement('li');
-                var optionCat = document.createElement('option');
+                // var liCat = document.createElement('li');
+                // var optionCat = document.createElement('option');
                 tdCat.innerHTML = `<a href="#">${category.name}</a>`;
-                optionCat.innerHTML = category.name;
-                liCat.innerHTML = category.name;
-                divCat.innerHTML = category.name;
+                // optionCat.innerHTML = category.name;
+                // liCat.innerHTML = category.name;
+                // divCat.innerHTML = category.name;
                 trCat.append(tdCat);
                 tableauCat.append(trCat);
-                listeCat.append(liCat);
-                selectCat.append(optionCat);
-                cloud.append(divCat)
+                // listeCat.append(liCat);
+                // selectCat.append(optionCat);
+                // cloud.append(divCat)
                 console.log(listeCat);
             })
         })
@@ -36,37 +36,37 @@ document.addEventListener("readystatechange", displayCat);
 
 // REQUETE POUR LE MENU TAG
 
-var cloud = document.querySelector("#cloud");
-var selectCat = document.querySelector("#selectCat");
-var tableauCat = document.querySelector("#tableauCat");
-var listeCat = document.querySelector("#listeCat")
+// var cloudTag = document.querySelector("#cloudTagDisplay");
+// var selectTag = document.querySelector("#selectTag");
+var tableauTag = document.querySelector("#tableauTag");
+// var listeTag = document.querySelector("#listeTag")
 
-var displayCat = function () {
-    fetch("https://127.0.0.1:8000/api/categories/", { method: "GET" })
+var displayTag = function () {
+    fetch("https://127.0.0.1:8000/api/tags/", { method: "GET" })
         .then(function(response) { return response.json() })
         .then((responseJSON) => {
-            responseJSON["hydra:member"].forEach((category) => {
-                var divCat = document.createElement('div');
-                var trCat = document.createElement('tr');
-                var tdCat = document.createElement('td');
-                var liCat = document.createElement('li');
-                var optionCat = document.createElement('option');
-                tdCat.innerHTML = `<a href="#">${category.name}</a>`;
-                optionCat.innerHTML = category.name;
-                liCat.innerHTML = category.name;
-                divCat.innerHTML = category.name;
-                trCat.append(tdCat);
-                tableauCat.append(trCat);
-                listeCat.append(liCat);
-                selectCat.append(optionCat);
-                cloud.append(divCat)
-                console.log(listeCat);
+            responseJSON["hydra:member"].forEach((tag) => {
+                // var divTag = document.createElement('div');
+                var trTag = document.createElement('tr');
+                var tdTag = document.createElement('td');
+                // var liTag = document.createElement('li');
+                // var optionTag = document.createElement('option');
+                tdTag.innerHTML = `<a href="#">${tag.name}</a>`;
+                // optionTag.innerHTML = tag.name;
+                // liTag.innerHTML = tag.name;
+                // divTag.innerHTML = tag.name;
+                trTag.append(tdTag);
+                tableauTag.append(trTag);
+                // listeTag.append(liTag);
+                // selectTag.append(optionTag);
+                // cloudTag.append(divTag)
+                console.log(listeTag);
             })
         })
 }
-// displayCat();
+// displayTag();
 
-document.addEventListener("readystatechange", displayCat);
+document.addEventListener("readystatechange", displayTag);
 
 
 // CREATE FUNCTION
