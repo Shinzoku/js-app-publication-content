@@ -28,7 +28,7 @@ var displayCat = function () {
             })
         })
 }
-// displayCat();
+displayCat();
 
 document.addEventListener("readystatechange", displayCat);
 
@@ -64,7 +64,7 @@ var displayTag = function () {
             })
         })
 }
-// displayTag();
+displayTag();
 
 document.addEventListener("readystatechange", displayTag);
 
