@@ -19,18 +19,18 @@ var displayCat = function () {
                 // optionCat.innerHTML = category.name;
                 // liCat.innerHTML = category.name;
                 // divCat.innerHTML = category.name;
-                trCat.append(tdCat);
                 tableauCat.append(trCat);
+                trCat.append(tdCat);
                 // listeCat.append(liCat);
                 // selectCat.append(optionCat);
                 // cloud.append(divCat)
-                console.log(listeCat);
+                // console.log(listeCat);
             })
         })
 }
-displayCat();
+// displayCat();
 
-document.addEventListener("readystatechange", displayCat);
+document.addEventListener("DOMContentLoaded", displayCat);
 
 
 
@@ -55,18 +55,18 @@ var displayTag = function () {
                 // optionTag.innerHTML = tag.name;
                 // liTag.innerHTML = tag.name;
                 // divTag.innerHTML = tag.name;
-                trTag.append(tdTag);
                 tableauTag.append(trTag);
+                trTag.append(tdTag);
                 // listeTag.append(liTag);
                 // selectTag.append(optionTag);
                 // cloudTag.append(divTag)
-                console.log(listeTag);
+                // console.log(listeTag);
             })
         })
 }
-displayTag();
+// displayTag();
 
-document.addEventListener("readystatechange", displayTag);
+document.addEventListener("DOMContentLoaded", displayTag);
 
 
 // CREATE FUNCTION
