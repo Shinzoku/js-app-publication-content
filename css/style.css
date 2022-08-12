@@ -143,11 +143,3 @@ ul li:hover>ul {
 }
 
 /*Tableau*/
-
-.tableau{
-}
-
-.articlesDatas{
-  display: grid;
-  grid-column-start: span;
-}
