@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/style.css">
+    <script src="/js/admin-articles.js" defer></script>
+
     <title>Tableau Articles</title>
 </head>
 
@@ -17,7 +19,7 @@
         </figure>
     </header>
 
-
+    <h1 class="center1">tableau</h1>
     <section>
         <div id="page">
         <div class="link2">
@@ -34,8 +36,27 @@
                         <li><a class="au" title="Auteur" href="../pageadmin/editertagcatau.html">Auteur</a></li>
                     </ul>
                 </div>
+                <section class="tableau">
+                    <div id="info"></div>
+                    <div id="articles">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Titre</td>
+                                    <td>Date de publication</td>
+                                    <td>Actions</td>
+                                </tr>
+                            <tbody id="articlesDatas"></tbody>
+                        </table>
+                    </div>
+                    <div id="divCreateBtn">
+                        <a href="http://127.0.0.1:5500/page/create-article.html"><button id="createBtn">+ Créer</button></a>
+                    </div>
+                </section>
         </div>
     </section>
+
 
     <footer>
         <hr>

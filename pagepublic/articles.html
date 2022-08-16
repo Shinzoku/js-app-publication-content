@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/style.css">
+    <script src="/js/main.js" defer></script>
     <title>Articles-Liste</title>
 </head>
 
@@ -37,12 +38,23 @@
                 </div>
             </nav>
 
-            <article>
-            <div class="articlehall">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil atque aliquam, numquam sint asperiores soluta earum suscipit possimus officiis accusamus quidem ex! Esse dolore voluptas quia ipsam similique. Exercitationem.</p>
-            </div>
-        </article>
-
+            <section class="tableau">
+                <div id="info"></div>
+                <div id="articles">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td><img src="/Images/iconDot2.jpg"></td>
+                                <td>Titre</td>
+                                <td>Date de publication</td>
+                            </tr>
+                        <tbody id="articlesDatas"></tbody>
+                    </table>
+                </div>
+                <div id="divCreateBtn">
+                    <a href="http://127.0.0.1:5500/page/create-article.html"><button id="createBtn">+ Créer</button></a>
+                </div>
+            </section>
         </div>
     </section>
 

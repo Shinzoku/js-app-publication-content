@@ -1,5 +1,5 @@
 // Configuration variables
-var APIURL = "https://127.0.0.1:8000/api";
+var APIURL = "https://127.0.0.1:8001/api";
 var articlesAPIURL = APIURL + "/articles";
 
 // future DOM interactions
