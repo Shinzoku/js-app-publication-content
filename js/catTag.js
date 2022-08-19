@@ -2,7 +2,6 @@
 
 // var cloud = document.querySelector("#cloudDisplay");
 // var selectCat = document.querySelector("#selectCat");
-var tableauCat = document.querySelector("#tableauCat");
 // var listeCat = document.querySelector("#listeCat")
 
 var displayCat = function () {
@@ -19,6 +18,7 @@ var displayCat = function () {
                 // optionCat.innerHTML = category.name;
                 // liCat.innerHTML = category.name;
                 // divCat.innerHTML = category.name;
+                var tableauCat = document.querySelector("#tableauCat");
                 tableauCat.append(trCat);
                 trCat.append(tdCat);
                 // listeCat.append(liCat);
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", displayCat);
 
 // var cloudTag = document.querySelector("#cloudTagDisplay");
 // var selectTag = document.querySelector("#selectTag");
-var tableauTag = document.querySelector("#tableauTag");
 // var listeTag = document.querySelector("#listeTag")
 
 var displayTag = function () {
@@ -55,6 +54,8 @@ var displayTag = function () {
                 // optionTag.innerHTML = tag.name;
                 // liTag.innerHTML = tag.name;
                 // divTag.innerHTML = tag.name;
+                var tableauTag = document.querySelector("#tableauTag");
+
                 tableauTag.append(trTag);
                 trTag.append(tdTag);
                 // listeTag.append(liTag);
