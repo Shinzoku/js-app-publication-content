@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/admin-articles.js" defer></script>
+    <link rel="shortcut icon" href="../media/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Voir / modifier un article</title>
+</head>
+
+<body>
+    <div id="info"></div>
+    <h1>Voir / Éditer l'article</h1>
+    <div class="pageAddArticle">
+        <div class="zoneArticle">
+            <div>
+                <div>
+                    <label for="title">Titre de l'article</label>
+                </div>
+                <div>
+                    <input type="text" name="title" id="title">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="body">Corp de l'article</label>
+                </div>
+                <div>
+                    <textarea name="body" id="body" cols="100" rows="40"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="zoneOptions">
+            <div id="categoriesList">
+                <label for="category">Modifiez la catégorie</label>
+                <select name="category" id="category"></select>
+            </div>
+            <div id="tagsList">
+                <div>
+                    <label>Modifiez un ou plusieur tags</label>
+                </div>
+                <div id="tagsCheckboxList"></div>
+            </div>
+            <div>
+                <label>Modifiez l'auteur</label>
+                <div id="writersRadioList"></div>
+            </div>
+            <div>
+                <div>
+                    <span>Date de publication: <span id="publishedAt"></span></span>
+                </div>
+                <div id="divCheckbox"></div>
+            </div>
+            <div>
+                <button id="update">Modifier</button>
+                <a href="./articles.html"><button>Return à la liste d'articles &RightArrow;</button></a>
+            </div>
+            <div id="info"></div>
+        </div>
+    </div>
+</body>
+
+</html>

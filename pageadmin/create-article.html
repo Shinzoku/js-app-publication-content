@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/admin-articles.js" defer></script>
+    <link rel="shortcut icon" href="../media/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Céer un nouvel article</title>
+</head>
+
+<body>
+    <div id="info"></div>
+    <h1>Nouvel article</h1>
+    <div class="pageAddArticle">
+        <div class="zoneArticle">
+            <div>
+                <div>
+                    <label for="newTitle">Titre de l'article</label>
+                </div>
+                <div>
+                    <input type="text" name="newTitle" id="newTitle">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="newBody">Corps de l'article</label>
+                </div>
+                <div>
+                    <textarea name="newBody" id="newBody" cols="100" rows="40"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="zoneOptions">
+            <div id="categoriesList">
+                <label for="category">Sélectionnez la catégorie</label>
+                <select name="category" id="category"></select>
+            </div>
+            <hr>
+            <div id="tagsList">
+                <div>
+                    <label for="tags">sélectionnez un ou plusieur tags:</label>
+                </div>
+                <div id="tagsCheckboxList"></div>
+            </div>
+            <hr>
+            <div>
+                <label for="writer">Sélectionnez un auteur:</label>
+                <div id="writersRadioList"></div>
+            </div>
+            <hr>
+            <div>
+                <div>
+                    <label for="publishedNow">Publié maintenant</label>
+                    <input type="checkbox" name="publishedNow" id="publishedNow">
+                </div>
+            </div>
+            <div>
+                <button id="create">Créer</button>
+                <a href="http://127.0.0.1:5500/pageadmin/articles.html"><button>Return à la liste d'articles &RightArrow;</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
