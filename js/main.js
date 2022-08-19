@@ -1,5 +1,5 @@
 // Configuration variables
-var APIURL = "https://127.0.0.1:8000/api";
+var APIURL = "https://127.0.0.1:8001/api";
 var articlesAPIURL = APIURL + "/articles?pages=";
 // "/articles?per_page=20";
 // future DOM interactions
@@ -21,6 +21,7 @@ var readArticles = function () {
 
                     let articleTr = document.createElement("tr");
                     let articleTdIcon = document.createElement("td");
+                    articleTdIcon.innerHTML = `<img src="/Images/iconDot2.jpg">`;
                     let articleTdTitle = document.createElement("td");
                     articleTdTitle.innerHTML = `<a href="#">${article.title}</a>`;
                     let articleTdPublishedAt = document.createElement("td");
@@ -29,8 +30,6 @@ var readArticles = function () {
                     articleTr.appendChild(articleTdIcon);
                     articleTr.appendChild(articleTdTitle);
                     articleTr.appendChild(articleTdPublishedAt);
-                    articleTdIcon.innerHTML = `<img src="CSS/iconDot2.jpg">`;
-                    
 
                 };
             });
