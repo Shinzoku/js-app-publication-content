@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/admin.js" defer></script>
+    <script src="../js/admin-articles.js" defer></script>
     <link rel="shortcut icon" href="../media/favicon/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/style.css" />
     <title>Voir / modifier un article</title>
 </head>
 
 <body>
+    <div id="info"></div>
     <h1>Voir / Éditer l'article</h1>
     <div class="pageAddArticle">
         <div class="zoneArticle">
@@ -34,30 +35,28 @@
         </div>
         <div class="zoneOptions">
             <div id="categoriesList">
-                <label for="category">Sélectionnez la catégorie</label>
+                <label for="category">Modifiez la catégorie</label>
                 <select name="category" id="category"></select>
             </div>
             <div id="tagsList">
                 <div>
-                    <label for="tags">sélectionnez un ou plusieur tags</label>
+                    <label>Modifiez un ou plusieur tags</label>
                 </div>
                 <div id="tagsCheckboxList"></div>
             </div>
             <div>
-                <label for="writer">Sélectionnez un auteur</label>
-                <select name="writer" id="writer"></select>
+                <label>Modifiez l'auteur</label>
+                <div id="writersRadioList"></div>
             </div>
             <div>
                 <div>
-                    <label for="publishedAt">Date de publication</label>
+                    <span>Date de publication: <span id="publishedAt"></span></span>
                 </div>
-                <div>
-                    <input type="datetime-local" name="publishedAt" id="publishedAt">
-                </div>
+                <div id="divCheckbox"></div>
             </div>
             <div>
                 <button id="update">Modifier</button>
-                <a href="http://127.0.0.1:5500/page/articles.html"><button>Return à la liste d'articles &RightArrow;</button></a>
+                <a href="./articles.html"><button>Return à la liste d'articles &RightArrow;</button></a>
             </div>
             <div id="info"></div>
         </div>

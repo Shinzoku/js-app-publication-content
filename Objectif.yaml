@@ -1,0 +1,22 @@
+/ PUBLIC /
+
+index.html / Nuage de mots 
+affichage.html / Lecture / Aficahge
+articles.html / affichage liste des articles
+
+----------
+
+
+/ ADMIN /
+tableau.html / tableau avec tout les articles / Id /titre/ publishedAt / Date 
+
+# Création d'un Articles
+
+editerarticles.html
+creationarticles.html
+
+# Création ou Editer / Tag CAtégories OU Auteurs /
+creationtagcatau.html
+editertagcatau.html
+
+# À pas toucher !!! 
